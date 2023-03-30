@@ -35,14 +35,31 @@ class User {
 }
 
 class Teacher extends User {
-	constructor(firstName, lastName, age, groups, yearsOfExperience) {
+	constructor(firstName, lastName, age, groups = [], yearsOfExperience) {
 		super(firstName, lastName, age);
 		this.groups = groups;
 		this.yearsOfExperience = yearsOfExperience;
 	}
 
 	isGroupTeacher(groupName) {
-		if (groups.include(groupName)) 
+		if (this.groups.includes(groupName)) 
+			return true;
+		return false;
+	}
+}
+
+
+class Student extends User {
+	static MIN_GRADE_FOR_SCHOLARSHIP = 4;
+
+	constructor(firstName, lastName, age, group, averageGrade) {
+		super(firstName, lastName, age);
+		this.group = group;
+		this.averageGrade = averageGrade;
+	}
+
+	isEligibleForScholarship() {
+		if (this.averageGrade > Student.MIN_GRADE_FOR_SCHOLARSHIP)
 			return true;
 		return false;
 	}
