@@ -6,31 +6,11 @@ class User {
 	}
 
 	get fullName() {
-		return `${this._firstName} ${this._lastName}`;
+		return `${this.firstName} ${this.lastName}`;
 	}
 
 	get birthYear() {
-		return new Date().getFullYear() - this._age;
-	}
-
-	set firstName(firstName) {
-		if (!firstName) {
-			console.log("First name can't be empty.");
-			return;
-		}
-		this._firstName = firstName;
-	}
-
-	set lastName(lastName) {
-		if (!lastName) {
-			console.log("Last name can't be empty.");
-			return;
-		}
-		this._lastName = lastName;
-	}
-
-	set age(age) {
-		this._age = age;
+		return new Date().getFullYear() - this.age;
 	}
 }
 
@@ -42,9 +22,7 @@ class Teacher extends User {
 	}
 
 	isGroupTeacher(groupName) {
-		if (this.groups.includes(groupName)) 
-			return true;
-		return false;
+		return this.groups.includes(groupName);
 	}
 }
 
@@ -59,9 +37,7 @@ class Student extends User {
 	}
 
 	isEligibleForScholarship() {
-		if (this.averageGrade > Student.MIN_GRADE_FOR_SCHOLARSHIP)
-			return true;
-		return false;
+		return this.averageGrade > Student.MIN_GRADE_FOR_SCHOLARSHIP;
 	}
 }
 
